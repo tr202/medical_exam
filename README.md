@@ -8,7 +8,7 @@
   ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 
-## API для работы с базой данных медицинских тестов
+## API для работы с базой данных медицинских тестов [DEMO](http://medtest.ddns.net)
 
 
 ### Техзадание:
@@ -59,7 +59,7 @@
 
 - Git rep
 
-- CI
+- CI/github actions
 
 - Инструкция по запуску
 
@@ -127,7 +127,7 @@ http://host:8000/api/tests/?lab_id=UUID - Где UUID один из id лабо�
 ### Регистрация нового пользователя
 > Можно использовать Postman
 ```
-Сделать POST запрос на: http://host:8000/docs
+Сделать POST запрос на: http://host:8000/users/
 Payload:
   {
   "email": "user@example.com",

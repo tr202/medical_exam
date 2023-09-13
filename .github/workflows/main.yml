@@ -3,7 +3,7 @@ name: Main Medical exam workflow
 on:
   push:
     branches:
-      - main
+      - mainl
 
 jobs:
   tests:
