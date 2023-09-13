@@ -1,16 +1,22 @@
 import datetime
 from http import HTTPStatus
 
+from django.contrib.auth import get_user_model
 from indicators.models import IndicatorsMetrics, References, Scores
 from mixer.backend.django import mixer
 from public.models import Labs, Tests
 from rest_framework.test import APITestCase
+
+User = get_user_model()
 
 
 class TestsAPIViewTests(APITestCase):
     tests_url = "/api/tests/"
 
     def setUp(self):
+        self.user = mixer.blend(User, username="adm", password="123")
+        user = User.objects.get(username="adm")
+        self.client.force_authenticate(user=user)
         self.indicators_metrics = mixer.cycle(4).blend(IndicatorsMetrics)
         self.references = mixer.cycle(4).blend(
             References, indicator_metric_id__in=self.indicators_metrics

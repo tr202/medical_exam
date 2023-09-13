@@ -53,13 +53,13 @@
 
 - Документация Swagger.
 
-- Docker compose
+- Docker compose.
 
 - Функциональные тесты
 
 - Git rep
 
-- CI/CD
+- CI
 
 - Инструкция по запуску
 
