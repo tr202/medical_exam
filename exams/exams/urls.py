@@ -15,4 +15,5 @@ urlpatterns = [
     ),
     path("", include("djoser.urls")),
     path("auth/", include("djoser.urls.authtoken")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

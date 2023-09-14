@@ -1,9 +1,6 @@
-from django.contrib.auth import get_user_model
-from indicators.models import References, Scores
+from indicators.models import Scores
 from public.models import Tests
 from rest_framework import serializers
-
-User = get_user_model()
 
 
 class ScoresSerializer(serializers.ModelSerializer):
@@ -18,8 +15,7 @@ class ScoresSerializer(serializers.ModelSerializer):
         return obj.indicator_metric_id.metric_id.name
 
     def get_is_within_normal_range(self, obj) -> bool:
-        references = References.objects.get(indicator_metric_id=obj.indicator_metric_id)
-        return references.min_score <= obj.score and obj.score <= references.max_score
+        return obj.min_score <= obj.score and obj.score <= obj.max_score
 
     class Meta:
         model = Scores
@@ -33,7 +29,7 @@ class ScoresSerializer(serializers.ModelSerializer):
 
 
 class TestsSerializer(serializers.ModelSerializer):
-    results = ScoresSerializer(many=True, source="scores_set")
+    results = ScoresSerializer(many=True, source="scores")
     duration_seconds = serializers.SerializerMethodField()
 
     def get_duration_seconds(self, obj) -> int:

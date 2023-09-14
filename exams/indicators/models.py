@@ -35,7 +35,7 @@ class IndicatorsMetrics(AbstaractExamsModel):
 
 class Scores(AbstaractExamsModel):
     score = DecimalField(max_digits=9, decimal_places=5)
-    test_id = ForeignKey(Tests, on_delete=SET_NULL, null=True)
+    test_id = ForeignKey(Tests, on_delete=SET_NULL, null=True, related_name="scores")
     indicator_metric_id = ForeignKey(IndicatorsMetrics, on_delete=SET_NULL, null=True)
 
     class Meta:
@@ -48,7 +48,9 @@ class Scores(AbstaractExamsModel):
 class References(AbstaractExamsModel):
     min_score = DecimalField(max_digits=6, decimal_places=2)
     max_score = DecimalField(max_digits=6, decimal_places=2)
-    indicator_metric_id = ForeignKey(IndicatorsMetrics, on_delete=SET_NULL, null=True)
+    indicator_metric_id = ForeignKey(
+        IndicatorsMetrics, on_delete=SET_NULL, null=True, related_name="references"
+    )
 
     class Meta:
         verbose_name_plural = "References"

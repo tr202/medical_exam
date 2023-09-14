@@ -22,12 +22,12 @@ INSTALLED_APPS = [
     "rest_framework",
     "djoser",
     "django_filters",
-    # "users",
     "api",
     "indicators",
     "public",
     "pgtrigger",
     "drf_spectacular",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -38,6 +38,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "exams.urls"
@@ -101,8 +102,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "collected_static"
-MEDIA_URL = "/media/"
-MEDIA_ROOT = config("MEDIA_ROOT", default=BASE_DIR / "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -114,4 +113,8 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: True,
 }
